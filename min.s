@@ -1,15 +1,13 @@
     section .text
-    global min
-min:
+    global _min
+_min:
 
     push rbp
-    mov rbp, rsp
-
-    mov rax, [rsp + 8]
-    ; mov rcx, [rsp + 16]
-    ; cmp rax, rcx
-    ; jle end
-    ; mov rax, rcx
+    ;mov rbp, rsp
+    mov rax, rdi
+    cmp rdi, rsi
+    jle end
+    mov rax, rsi
 end:
     pop rbp
     ret

@@ -1,6 +1,6 @@
 CC = nasm
 LD = ld
-FLAGS =-felf64
+FLAGS =-f macho64
 
 NAME = hello
 
@@ -16,7 +16,7 @@ all:$(NAME)
 	$(CC) $(FLAGS) $< -o $@
 
 $(NAME):$(OBJ)
-	$(LD) $(OBJ) -o $(NAME)
+	$(LD) -macosx_version_min 10.7.0 $(OBJ) -o $(NAME) -no_pie
 
 clean:
 	rm -rf $(OBJ)
@@ -26,5 +26,6 @@ fclean: clean
 
 test:$(OBJ)
 	gcc $(OBJ) ft_tests.c -o test
+
 re:fclean all
 	

@@ -1,13 +1,19 @@
-section .text
-global hello
-hello:
-	mov rax, 1			; write(
-	mov rdi, 1			;   STDOUT_FILENO,
-	mov rsi, msg		;   "Hello, world!\n",
-	mov rdx, msglen		;   sizeof("Hello, world!\n")
-	syscall				; );
-	ret					;// essentially identical to: pop [register] -> jmp [register]
+SECTION .text
 
-section .data
-  msg: db "Hello, world!", 10
-  msglen: equ $ - msg
+global _hello
+_hello:
+	mov rax, 0x2000004      ; syscall 4: write (
+	mov rdi, 1              ;    fd,
+	mov rsi, Msg            ;    buffer,
+	mov rdx, Len            ;    size
+	syscall                 ; )
+	mov rax, 0x2000004      ; syscall 4: write (
+	mov rdi, 1              ;    fd,
+	mov rsi, Msg            ;    buffer,
+	mov rdx, Len            ;    size
+	syscall                 ; )
+	ret						;
+
+SECTION .data
+Msg db 'Hello world!', 10
+Len: equ $ - Msg

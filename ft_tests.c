@@ -8,7 +8,7 @@ int min(int a, int b);
 int main()
 {
 	hello();
-	int a = min(20, 30);
+	int a = min(42, 1);
 	printf("min = %i\n", a);
 	return (0);
 }
