@@ -1,6 +1,6 @@
     section .text
-    global _min
-_min:
+    global min
+min:
 
     push rbp
     ;mov rbp, rsp
